@@ -1,0 +1,18 @@
+name: Handle New Repository Created
+
+on:
+  repository_dispatch:
+    types: [repository-created]
+
+jobs:
+  configure-new-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log Repository Details
+        run: |
+          echo "A new repository was created!"
+          echo "Repository Name: ${{ github.event.client_payload.repository.name }}"
+          echo "Created By: ${{ github.event.client_payload.repository.owner.login }}"
+
+      # Example Action: You can add steps here to automatically push 
+      # a default README, apply branch protection rules, or create issues.
